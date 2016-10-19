@@ -14,3 +14,4 @@
 Route::get('/', 'ApiController@Authenticate');
 Route::get('/home', 'ApiController@Access');
 Route::post('/recommendations', 'UserController@getProfile');
+Route::get('/recommendations', 'UserController@getProfile');

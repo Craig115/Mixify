@@ -11,28 +11,23 @@ use App\Http\Requests;
 use SpotifyWebAPI\Session;
 use SpotifyWebAPI\SpotifyWebAPI;
 use Illuminate\Http\Request;
-use App\Repositories\AuthRepositoryInterface;
-#
+
+
 class UserController extends Controller
 {
     public $session;
-    public $api;
-    protected $repository;
 
-    public function __construct(SpotifyWebAPI $api, AuthRepositoryInterface $repository)
+    public function __construct()
     {
-      $this->api = $api;
-      $this->repository = $repository;
+      $this->middleware('token');
     }
 
-    public function getProfile(AuthRepositoryInterface $repository, SpotifyWebAPI $api, Playlist $playlist, Track $track, Profile $profile, Artist $artist)
+    public function getProfile(Request $request, Playlist $playlist, Track $track, Profile $profile, Artist $artist)
     {
-      $repository->check($api);
-
-      $playlist = $playlist->getMyPlaylists($api);
-      $tracks = $track->getTopTracks($api, 5);
-      $user = $profile->getUser($api);
-      $artists = $artist->getTopArtists($api);
+      $playlist = $playlist->getMyPlaylists($request->api);
+      $tracks = $track->getTopTracks($request->api, 5);
+      $user = $profile->getUser($request->api);
+      $artists = $artist->getTopArtists($request->api);
 
       return view('profile', [
         'playlists' => $playlist->items,
