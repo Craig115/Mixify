@@ -50,5 +50,6 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'token' => \App\Http\Middleware\TokenHandler::class,
+        'spotify-auth' => \App\Http\Middleware\CheckSpotifyAuth::class,
     ];
 }

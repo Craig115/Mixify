@@ -12,7 +12,7 @@ class TokenHandler
     {
       $accessToken = AppSession::get('accessToken');
 
-      $api =new SpotifyWebAPI();
+      $api = new SpotifyWebAPI();
 
       $api->setAccessToken($accessToken);
       $request->api = $api;

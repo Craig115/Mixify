@@ -10,8 +10,19 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::get('/', function()
+{
+  $check = Session::get('authorized');
 
-Route::get('/', 'ApiController@Authenticate');
-Route::get('/home', 'ApiController@Access');
-Route::post('/recommendations', 'UserController@getProfile');
-Route::get('/recommendations', 'UserController@getProfile');
+  if($check) {
+    return redirect()->action('SpotifyApiController@Test');
+  } else {
+    return view('splash');
+  }
+});
+
+Route::get('/profile', 'UserController@getProfile');
+
+
+Route::post('/auth', 'SpotifyApiController@Test');
+Route::get('/recommendations', 'SpotifyApiController@Test');

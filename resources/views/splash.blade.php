@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Spotify</title>
+        <title>Laravel</title>
 
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+        <script src="http://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
 
         <style>
             html, body {
@@ -38,28 +39,11 @@
     <body>
         <div class="container">
             <div class="content">
-              <h2>Hi {{ $user->id }}</h2>
-              <ul>
-                <h1>Your playlists</h1>
-                @foreach($playlists as $play)
-              <li>{{ $play->name }}</li>
-                @endforeach
-              </ul>
-
-              <ul>
-                <h1>Your Top Artists</h1>
-                @foreach($artists as $artist)
-              <li>{{ $artist->name }}</li>
-                @endforeach
-              </ul>
-
-              <ul>
-                <h1>Your Top Tracks</h1>
-                @foreach($tracks as $track)
-              <li>{{ $track->name }}</li>
-                @endforeach
-              </ul>
-
+                <div class="title">Splash</div>
+                  <form method="POST" id="auth" action="/auth">
+                      {{ csrf_field() }}
+                      <button type="submit">Begin today!</button>
+                  </form>
             </div>
         </div>
     </body>

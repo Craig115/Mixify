@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Track;
+use App\Artist;
+use App\Playlist;
+use App\Profile;
 use Session as AppSession;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use SpotifyWebAPI\Session;
 use SpotifyWebAPI\SpotifyWebAPI;
-use App\Http\Controllers\UserController;
 
-class ApiController extends Controller
+class SpotifyApiController extends Controller
 {
     public $session;
 
@@ -18,7 +21,7 @@ class ApiController extends Controller
       $this->session = $session;
     }
 
-    public function Authenticate(Session $session)
+    public function Test(Session $session)
     {
       $scopes = array(
         'playlist-read-private',
@@ -31,18 +34,9 @@ class ApiController extends Controller
         'scope' => $scopes
       ));
 
+      AppSession::put('authorized', 'yes');
+
       header('Location: ' . $authorizeUrl);
-    }
 
-    public function access(Session $session, Request $request)
-    {
-      $code = substr($request->fullurl(), 32,300);
-
-      $session->requestAccessToken($code);
-      $accessToken = $session->getAccessToken();
-
-      AppSession::put('accessToken', $accessToken);
-
-      return view('home');
     }
 }
