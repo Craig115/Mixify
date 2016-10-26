@@ -21,7 +21,7 @@ class SpotifyApiController extends Controller
       $this->session = $session;
     }
 
-    public function Test(Session $session)
+    public function Authorize(Session $session)
     {
       $scopes = array(
         'playlist-read-private',

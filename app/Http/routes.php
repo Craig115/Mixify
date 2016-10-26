@@ -15,7 +15,8 @@ Route::get('/', function()
   $check = Session::get('authorized');
 
   if($check) {
-    return redirect()->action('SpotifyApiController@Test');
+    return "here";
+    return redirect()->action('SpotifyApiController@Authorize');
   } else {
     return view('splash');
   }
@@ -24,5 +25,9 @@ Route::get('/', function()
 Route::get('/profile', 'UserController@getProfile');
 
 
-Route::post('/auth', 'SpotifyApiController@Test');
-Route::get('/recommendations', 'SpotifyApiController@Test');
+Route::post('/auth', 'SpotifyApiController@Authorize');
+Route::get('/recommendations', 'SpotifyApiController@Authorize');
+
+Route::get('/home', function(){
+  return view('test');
+})

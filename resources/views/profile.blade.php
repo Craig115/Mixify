@@ -60,6 +60,11 @@
                 @endforeach
               </ul>
 
+              <form method="POST" id="recommended" action="/recommended">
+                  {{ csrf_field() }}
+                  <button type="submit">Get Your Recommended Tracks</button>
+              </form>
+
             </div>
         </div>
     </body>
