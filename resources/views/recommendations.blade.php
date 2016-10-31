@@ -38,32 +38,14 @@
     <body>
         <div class="container">
             <div class="content">
-              <h2>Hi {{ $user->id }}</h2>
-              <ul>
-                <h1>Your playlists</h1>
-                @foreach($playlists as $play)
-              <li>{{ $play->name }}</li>
+                <h1>Here's your Mix</h1>
+                @foreach($recommendations as $recommendation)
+                <ul>
+              <li>Track: {{ $recommendation->name }}</li>
+              <li>Artist: {{ $recommendation->artists[0]->name }}</li>
+              <li>Album: {{ $recommendation->album->name }}</li>
+                </ul>
                 @endforeach
-              </ul>
-
-              <ul>
-                <h1>Your Top Artists</h1>
-                @foreach($artists as $artist)
-              <li>{{ $artist->name }}</li>
-                @endforeach
-              </ul>
-
-              <ul>
-                <h1>Your Top Tracks</h1>
-                @foreach($tracks as $track)
-              <li>{{ $track->name }}</li>
-                @endforeach
-              </ul>
-
-              <form method="POST" id="recommended" action="/recommended">
-                  {{ csrf_field() }}
-                  <button type="submit">Get Your Recommended Tracks</button>
-              </form>
 
             </div>
         </div>

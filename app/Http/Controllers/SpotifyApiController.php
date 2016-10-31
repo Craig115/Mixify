@@ -21,7 +21,7 @@ class SpotifyApiController extends Controller
       $this->session = $session;
     }
 
-    public function Test(Session $session)
+    public function spotifyLogin(Session $session)
     {
       $scopes = array(
         'playlist-read-private',
@@ -34,7 +34,7 @@ class SpotifyApiController extends Controller
         'scope' => $scopes
       ));
 
-      AppSession::put('authorized', 'yes');
+      AppSession::put('session', $session);
 
       header('Location: ' . $authorizeUrl);
 

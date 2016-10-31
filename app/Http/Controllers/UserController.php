@@ -9,6 +9,7 @@ use App\Playlist;
 use App\Profile;
 use App\Http\Requests;
 use SpotifyWebAPI\Session;
+use Session as AppSession;
 use SpotifyWebAPI\SpotifyWebAPI;
 use Illuminate\Http\Request;
 use App\Repositories\ApiAccessRepositoryInterface;
@@ -22,16 +23,18 @@ class UserController extends Controller
     public function __construct(Request $request, ApiAccessRepositoryInterface $repository, Session $session)
     {
       $this->repository = $repository;
-      $this->session = $session;
-      $api = $repository->Access($request, $session);
+      $session = AppSession::get('session');
+      $repository->Check($request, $session);
     }
 
-    public function getProfile(Request $request, Session $session, Playlist $playlist, Track $track, Profile $profile, Artist $artist, ApiAccessRepositoryInterface $repository)
+    public function getProfile(Request $request, Playlist $playlist, Track $track, Profile $profile, Artist $artist)
     {
       $playlist = $playlist->getMyPlaylists($request->api);
       $tracks = $track->getTopTracks($request->api, 5);
       $user = $profile->getUser($request->api);
       $artists = $artist->getTopArtists($request->api);
+
+      AppSession::put('topTracks', $tracks->items);
 
       return view('profile', [
         'playlists' => $playlist->items,
@@ -39,6 +42,18 @@ class UserController extends Controller
         'user' => $user,
         'artists' => $artists->items
       ]);
+
+    }
+
+    public function getRecommended(Request $request, Track $track, ApiAccessRepositoryInterface $repository)
+    {
+      $toptracks = AppSession::get('topTracks');
+
+      $recommendedTracks = $track->getRecommendedTracks($request->api, $toptracks);
+      
+       return view('recommendations', [
+         'recommendations' => $recommendedTracks
+       ]);
 
     }
 

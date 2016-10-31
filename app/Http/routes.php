@@ -12,10 +12,10 @@
 */
 Route::get('/', function()
 {
-  $check = Session::get('authorized');
+  $check = Session::get('session');
 
   if($check) {
-    return redirect()->action('SpotifyApiController@Test');
+    return redirect()->action('SpotifyApiController@spotifyLogin');
   } else {
     return view('splash');
   }
@@ -24,5 +24,6 @@ Route::get('/', function()
 Route::get('/profile', 'UserController@getProfile');
 
 
-Route::post('/auth', 'SpotifyApiController@Test');
-Route::get('/recommendations', 'SpotifyApiController@Test');
+Route::post('/auth', 'SpotifyApiController@spotifyLogin');
+Route::get('/auth', 'SpotifyApiController@spotifyLogin');
+Route::post('/recommended', 'UserController@getRecommended');
