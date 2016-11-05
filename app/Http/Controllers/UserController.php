@@ -35,7 +35,7 @@ class UserController extends Controller
       $artists = $artist->getTopArtists($request->api);
 
       AppSession::put('topTracks', $tracks->items);
-
+;
       return view('profile', [
         'playlists' => $playlist->items,
         'tracks' => $tracks->items,
@@ -50,7 +50,7 @@ class UserController extends Controller
       $toptracks = AppSession::get('topTracks');
 
       $recommendedTracks = $track->getRecommendedTracks($request->api, $toptracks);
-      
+
        return view('recommendations', [
          'recommendations' => $recommendedTracks
        ]);

@@ -4,61 +4,56 @@
         <title>Spotify</title>
 
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
-
-        <style>
-            html, body {
-                height: 100%;
-            }
-
-            body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                display: table;
-                font-weight: 100;
-                font-family: 'Lato';
-            }
-
-            .container {
-                text-align: center;
-                display: table-cell;
-                vertical-align: middle;
-            }
-
-            .content {
-                text-align: center;
-                display: inline-block;
-            }
-
-            .title {
-                font-size: 96px;
-            }
-        </style>
+        <link href="/css/app.css" rel="stylesheet">
     </head>
     <body>
         <div class="container">
             <div class="content">
-              <h2>Hi {{ $user->id }}</h2>
-              <ul>
-                <h1>Your playlists</h1>
-                @foreach($playlists as $play)
-              <li>{{ $play->name }}</li>
-                @endforeach
-              </ul>
+              <user detail="{{ json_encode($user) }}" ></user>
 
-              <ul>
-                <h1>Your Top Artists</h1>
-                @foreach($artists as $artist)
-              <li>{{ $artist->name }}</li>
-                @endforeach
-              </ul>
+                <template id="user-template">
+                  <div>
+                    <li>@{{ user.display_name }}</li>
+                    <li><img src="@{{ user.images[0].url }}"/></li>
+                  </div>
+                </template>
 
-              <ul>
-                <h1>Your Top Tracks</h1>
-                @foreach($tracks as $track)
-              <li>{{ $track->name }}</li>
-                @endforeach
-              </ul>
+                <h1>Your Playlists</h1>
+
+                <personal list="{{ json_encode($playlists) }}"></personal>
+
+                <template id ="personal-template">
+                  <div>
+                  <ul class="list-group" v-for="playlist in list" >
+                      <li>@{{ playlist.name }}</li>
+                  </ul>
+                  <div>
+                </template>
+
+                <h3> My Top Artists</h1>
+
+                <personal list="{{ json_encode($artists) }}"></personal>
+
+                <template id ="personal-template">
+                  <div>
+                  <ul class="list-group" v-for="artist in list" >
+                      <li>@{{ artist.name }}</li>
+                  </ul>
+                  <div>
+                </template>
+
+                <h3> My Top Tracks</h1>
+
+                <personal list="{{ json_encode($tracks) }}"></personal>
+
+                <template id ="personal-template">
+                  <div>
+                  <ul class="list-group" v-for="track in list" >
+                      <li>@{{ track.name }}</li>
+                  </ul>
+                  <div>
+                </template>
+
 
               <form method="POST" id="recommended" action="/recommended">
                   {{ csrf_field() }}
@@ -67,5 +62,7 @@
 
             </div>
         </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.8/vue.js"></script>
+        <script src="/js/main.js"></script>
     </body>
 </html>
