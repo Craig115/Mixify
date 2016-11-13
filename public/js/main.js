@@ -1,14 +1,55 @@
 
-Vue.component('personal', {
-  template: '#personal-template',
+Vue.component('artist', {
+  template: '#artists-template',
 
   props: ['list'],
 
   created() {
-    this.list = JSON.parse(this.list);
+    this.parseJSON();
+  },
+
+  methods: {
+    parseJSON: function(){
+      this.list = JSON.parse(this.list);
+    }
   }
 
 });
+
+Vue.component('track', {
+  template: '#tracks-template',
+
+  props: ['list'],
+
+  created() {
+    this.parseJSON();
+  },
+
+  methods: {
+    parseJSON: function(){
+      this.list = JSON.parse(this.list);
+    }
+  }
+
+});
+
+Vue.component('playlist', {
+  template: '#playlists-template',
+
+  props: ['list'],
+
+  created() {
+    this.parseJSON();
+  },
+
+  methods: {
+    parseJSON: function(){
+      this.list = JSON.parse(this.list);
+    }
+  }
+
+});
+
 
 Vue.component('user', {
 
@@ -35,5 +76,5 @@ Vue.component('user', {
 });
 
 new Vue({
-  el: '.content'
+  el: '.container'
 });

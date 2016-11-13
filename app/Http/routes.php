@@ -21,6 +21,10 @@ Route::get('/', function()
   }
 });
 
+Route::get('/test', function(){
+  return File::get(public_path() . '/static/index.html');
+});
+
 Route::get('/profile', 'UserController@getProfile');
 
 

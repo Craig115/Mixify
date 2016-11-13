@@ -1,3 +1,105 @@
 body{
   background-color:#424242;
+  margin:0px;
 }
+
+.image-circle{
+  border-radius: 50%;
+  align-self: center;
+}
+
+.artist-image{
+  border-radius:50%;
+  height:150px;
+  width:150px;
+}
+
+.album-covers{
+  width:150px;
+  height:150px;
+  align-self: flex-start;
+}
+
+.content{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.center-content{
+  width:80%;
+  display:flex;
+  flex-direction: row;
+}
+
+.left-section{
+  width:50%;
+}
+
+.artists{
+  width:100%;
+}
+
+.artist-profiles{
+  display:flex;
+  flex-wrap: wrap;
+}
+
+.track-details{
+  display:flex;
+  flex-wrap: wrap;
+}
+
+.track-group{
+  display:flex;
+  padding-left:0px;
+  margin-right:40px;
+}
+
+.track-text{
+  justify-content: flex-end;
+  padding-left: 10px;
+  width:50%;
+}
+
+.track-image{
+  justify-content: flex-start;
+}
+
+.tracks{
+  width: 100%;
+}
+
+.right-section{
+  width:50%;
+  display:flex;
+  flex-direction: column;
+}
+
+.data-name{
+  text-align: center;
+  padding-top:5px;
+}
+
+.mix{
+  align-self: center;
+  margin-left:85px;
+}
+
+.mix button{
+  background-color:#D32E2E;
+  border:none;
+  padding:15px;
+  color:#fff;
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 300;
+  font-size: 1.25em;
+  border-radius:5px;
+}
+
+li{
+  list-style: none;
+}
+ ul.list-group{
+  padding:0px;
+ }
