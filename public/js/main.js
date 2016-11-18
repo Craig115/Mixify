@@ -1,3 +1,6 @@
+//var Mix = Vue.extend({
+
+//});
 
 Vue.component('artist', {
   template: '#artists-template',
@@ -28,9 +31,17 @@ Vue.component('track', {
   methods: {
     parseJSON: function(){
       this.list = JSON.parse(this.list);
+    },
+
+    mixTracks: function(){
+      this.$http.get('/recommended', function (data) {
+          vm.$data.mix = data;
+          this.list = vm.$data.mix;
+      }).error(function (data, status, request) {
+          console.log(request);
+      })
     }
   }
-
 });
 
 Vue.component('playlist', {
@@ -75,6 +86,12 @@ Vue.component('user', {
 
 });
 
-new Vue({
-  el: '.container'
+vm = new Vue({
+  el: '.container',
+
+  data: function () {
+    return {
+      mix: []
+    }
+  }
 });

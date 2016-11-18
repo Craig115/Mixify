@@ -79,21 +79,30 @@
                               <li class="data-name">@{{ track.album.name }}</li>
                            </div>
                         </ul>
-
-                        <form method="POST" class="mix" id="recommended" action="/recommended">
-                            {{ csrf_field() }}
-                            <button type="submit"><b>Get</b> Mix</button>
-                        </form>
+                        <button class="mix" v-on:click="mixTracks" v-if="!mix" type="submit"><b>Get</b> Mix</button>
                       </div>
-
                     </template>
-
                  </div>
               </div>
+
+              <template id ="mix-template" v-show="mix">
+                <ul class="track-group" transition name="fade" v-for="track in mix" >
+                    <div class="track-image">
+                      <input type="checkbox" name="mix-track" value="@{{ track.id }}"><img class="album-covers" src="@{{ track.album.images[0].url }}"/>
+                    </div>
+                    <div class="track-text">
+                      <li class="data-name">@{{ track.name }}</li>
+                      <li class="data-name">@{{ track.artists[0].name }}</li>
+                      <li class="data-name">@{{ track.album.name }}</li>
+                   </div>
+                </ul>
+              </template>
+
             </div>
           </div>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.8/vue.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.13/vue-resource.min.js"></script>
         <script src="/js/main.js"></script>
     </body>
 </html>

@@ -87,7 +87,7 @@ body {
   align-self: center;
   margin-left: 85px; }
 
-.mix button {
+.track-details button {
   background-color: #D32E2E;
   border: none;
   padding: 15px;
@@ -181,5 +181,11 @@ h5 {
   justify-content: flex-end;
   -ms-flex-align: center;
   align-items: center; }
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s; }
+
+.fade-enter, .fade-leave-active {
+  opacity: 0; }
 
 /*# sourceMappingURL=app.css.map */

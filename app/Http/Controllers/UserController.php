@@ -51,9 +51,7 @@ class UserController extends Controller
 
       $recommendedTracks = $track->getRecommendedTracks($request->api, $toptracks);
 
-       return view('recommendations', [
-         'recommendations' => $recommendedTracks
-       ]);
+       return $recommendedTracks;
 
     }
 
