@@ -19,6 +19,12 @@ body {
   -ms-flex-item-align: start;
   align-self: flex-start; }
 
+.mix-covers {
+  width: 75px;
+  height: 75px;
+  -ms-flex-item-align: start;
+  align-self: flex-start; }
+
 .content {
   display: -ms-flexbox;
   display: flex;
@@ -35,7 +41,7 @@ body {
   flex-direction: row; }
 
 .left-section {
-  width: 50%; }
+  width: 30%; }
 
 .artists {
   width: 100%; }
@@ -50,7 +56,9 @@ body {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+  -ms-flex-pack: center;
+  justify-content: center; }
 
 .track-group {
   display: -ms-flexbox;
@@ -72,7 +80,7 @@ body {
   width: 100%; }
 
 .right-section {
-  width: 50%;
+  width: 70%;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: column;
@@ -81,6 +89,14 @@ body {
 .data-name {
   text-align: center;
   padding-top: 5px; }
+
+.mix-name {
+  text-align: center;
+  padding-top: 5px;
+  font-size: 0.85em;
+  color: #fff;
+  font-weight: 300;
+  font-family: 'Fira Sans', sans-serif; }
 
 .mix {
   -ms-flex-item-align: center;
@@ -182,10 +198,10 @@ h5 {
   -ms-flex-align: center;
   align-items: center; }
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s; }
+.fade-transition {
+  transition: all .5s ease; }
 
-.fade-enter, .fade-leave-active {
+.fade-enter, .fade-leave {
   opacity: 0; }
 
 /*# sourceMappingURL=app.css.map */

@@ -22,7 +22,15 @@ Vue.component('artist', {
 Vue.component('track', {
   template: '#tracks-template',
 
-  props: ['list'],
+  props: ['list', 'mix'],
+
+  data: function(){
+    return {
+      loading: false,
+      hide: true,
+      hidemix: true
+    }
+  },
 
   created() {
     this.parseJSON();
@@ -34,13 +42,34 @@ Vue.component('track', {
     },
 
     mixTracks: function(){
+      //Hide Elements and display Loading Bar
+      vm.$data.hide = false;
+      this.hide = false;
+      this.loading = true;
+      //Make Request to get Mix then hide the loading bar
       this.$http.get('/recommended', function (data) {
           vm.$data.mix = data;
-          this.list = vm.$data.mix;
+          this.loading = false;
+          this.mix = vm.$data.mix;
+      }).error(function (data, status, request) {
+          console.log(request);
+      })
+    },
+
+    refreshMix: function(){
+      this.loading = true;
+      this.hidemix = false;
+      //Make Request to get Mix then hide the loading bar
+      this.$http.get('/recommended', function (data) {
+          vm.$data.mix = data;
+          this.loading = false;
+          this.hidemix = true;
+          this.mix = vm.$data.mix;
       }).error(function (data, status, request) {
           console.log(request);
       })
     }
+
   }
 });
 
@@ -91,7 +120,8 @@ vm = new Vue({
 
   data: function () {
     return {
-      mix: []
+      mix: [],
+      hide: true
     }
   }
 });

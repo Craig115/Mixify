@@ -1,6 +1,7 @@
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s
+.fade-transition {
+  transition: all .5s ease;
 }
-.fade-enter, .fade-leave-active {
-  opacity: 0
+
+.fade-enter, .fade-leave {
+  opacity: 0;
 }

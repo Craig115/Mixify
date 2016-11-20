@@ -32,23 +32,24 @@
 
                 <div class="left-section">
                   <div class="playlists">
-                    <h1><b>My Playlists</b></h1>
+                    <h1><b>Your Playlists</b></h1>
 
                     <playlist list="{{ json_encode($playlists) }}"></playlist>
 
                     <template id ="playlists-template">
                       <div>
-                      <ul class="list-group" v-for="playlist in list" >
-                          <li class="playlist-name"><input type="checkbox" name="playlist" value="@{{ playlist.id }}">@{{ playlist.name }}</li>
-                      </ul>
-                    </div>
+                        <ul class="list-group" v-for="playlist in list" >
+                            <li class="playlist-name"><input type="checkbox" name="playlist" value="@{{ playlist.id }}">@{{ playlist.name }}</li>
+                        </ul>
+                      </div>
+                      <button v-if="!hide" class="playlist" type="submit"><b>Add</b> to Playlist</button>
                     </template>
                   </div>
                 </div>
 
                 <div class="right-section">
-                  <div class="artists">
-                    <h3> My Top Artists</h1>
+                  <div class="artists" v-show="hide">
+                    <h3>Your Top Artists</h1>
 
                     <artist list="{{ json_encode($artists) }}"></artist>
 
@@ -63,13 +64,16 @@
                   </div>
 
                   <div class="tracks">
-                    <h3> My Top Tracks</h1>
+                    <h3 v-if="hide"> Your Top Tracks</h3>
+                    <h3 v-else>Your Mix</h3>
 
-                    <track list="{{ json_encode($tracks) }}"></track>
+                    <track list="{{ json_encode($tracks) }}" mix=""></track>
 
                     <template id ="tracks-template">
                       <div class="track-details">
-                        <ul class="track-group" v-for="track in list" >
+                        <h1 v-show="loading">Loading...</h1>
+
+                        <ul class="track-group" v-for="track in list" v-show="hide">
                             <div class="track-image">
                               <img class="album-covers" src="@{{ track.album.images[0].url }}"/>
                             </div>
@@ -79,25 +83,25 @@
                               <li class="data-name">@{{ track.album.name }}</li>
                            </div>
                         </ul>
-                        <button class="mix" v-on:click="mixTracks" v-if="!mix" type="submit"><b>Get</b> Mix</button>
+
+                        <ul class="track-group" v-for="track in mix" v-show="hidemix">
+                            <div class="track-image">
+                              <input type="checkbox" name="mix-track" value="@{{ track.id }}"><img class="mix-covers" src="@{{ track.album.images[0].url }}"/>
+                            </div>
+                            <div class="track-text">
+                              <li class="mix-name">@{{ track.name }}</li>
+                              <li class="mix-name">@{{ track.artists[0].name }}</li>
+                              <li class="mix-name">@{{ track.album.name }}</li>
+                           </div>
+                        </ul>
+
+                        <button v-if="hide" class="mix" v-on:click="mixTracks" type="submit"><b>Get</b> Mix</button>
+                        <button v-else class="mix" v-on:click="refreshMix" type="submit"><b>Refresh</b> Mix</button>
                       </div>
                     </template>
+
                  </div>
               </div>
-
-              <template id ="mix-template" v-show="mix">
-                <ul class="track-group" transition name="fade" v-for="track in mix" >
-                    <div class="track-image">
-                      <input type="checkbox" name="mix-track" value="@{{ track.id }}"><img class="album-covers" src="@{{ track.album.images[0].url }}"/>
-                    </div>
-                    <div class="track-text">
-                      <li class="data-name">@{{ track.name }}</li>
-                      <li class="data-name">@{{ track.artists[0].name }}</li>
-                      <li class="data-name">@{{ track.album.name }}</li>
-                   </div>
-                </ul>
-              </template>
-
             </div>
           </div>
         </div>
