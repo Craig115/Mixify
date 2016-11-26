@@ -28,7 +28,8 @@ Vue.component('track', {
     return {
       loading: false,
       hide: true,
-      hidemix: true
+      hidemix: true,
+      checktrack: []
     }
   },
 
@@ -68,8 +69,11 @@ Vue.component('track', {
       }).error(function (data, status, request) {
           console.log(request);
       })
-    }
+    },
 
+    selectTrack: function(){
+      vm.$children[1].$data.checkplaylist.tracks = this.checktrack;
+    }
   }
 });
 
@@ -82,12 +86,33 @@ Vue.component('playlist', {
     this.parseJSON();
   },
 
+  data: function () {
+    return {
+      checkplaylist: {
+        playlists: [],
+        tracks: [],
+        status: ''
+      },
+      csrf: ''
+    }
+  },
+
   methods: {
     parseJSON: function(){
       this.list = JSON.parse(this.list);
+    },
+
+    addTracks: function () {
+      this.$http.headers.common['X-CSRF-TOKEN'] = this.csrf;
+      var data = JSON.stringify(this.checkplaylist);
+      this.$http.post('/addTracks/' + data).then((response) => {
+        this.status = 'Successfully Added.';
+      }, (response) => {
+        console.log(response.data);
+        this.status = 'There was an error';
+      });
     }
   }
-
 });
 
 
@@ -123,5 +148,5 @@ vm = new Vue({
       mix: [],
       hide: true
     }
-  }
+  },
 });

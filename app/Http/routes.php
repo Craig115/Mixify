@@ -31,3 +31,7 @@ Route::get('/profile', 'UserController@getProfile');
 Route::post('/auth', 'SpotifyApiController@spotifyLogin');
 Route::get('/auth', 'SpotifyApiController@spotifyLogin');
 Route::get('/recommended', 'UserController@getRecommended');
+
+
+Route::post('/addTracks/{data}', 'PlaylistController@addTracks');
+Route::get('/addTracks/{data}', 'PlaylistController@addTracks');

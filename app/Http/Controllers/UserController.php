@@ -23,7 +23,9 @@ class UserController extends Controller
     public function __construct(Request $request, ApiAccessRepositoryInterface $repository, Session $session)
     {
       $this->repository = $repository;
+
       $session = AppSession::get('session');
+
       $repository->Check($request, $session);
     }
 
@@ -42,7 +44,6 @@ class UserController extends Controller
         'user' => $user,
         'artists' => $artists->items
       ]);
-
     }
 
     public function getRecommended(Request $request, Track $track, ApiAccessRepositoryInterface $repository)

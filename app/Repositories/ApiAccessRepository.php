@@ -10,6 +10,7 @@ class ApiAccessRepository implements ApiAccessRepositoryInterface
 {
   public function Check(Request $request, Session $session)
   {
+
     if($session->accessToken) {
       $this->Refresh($request, $session);
     } else {
@@ -19,7 +20,7 @@ class ApiAccessRepository implements ApiAccessRepositoryInterface
 
   public function Access(Request $request, Session $session)
   {
-    $code = substr($_SERVER['REQUEST_URI'], 14,300);
+    $code = substr($_SERVER['REQUEST_URI'], 14,306);
 
     $session->requestAccessToken($code);
 
@@ -40,7 +41,7 @@ class ApiAccessRepository implements ApiAccessRepositoryInterface
     $accessToken = $session->getAccessToken();
 
     $api = new SpotifyWebAPI();
-    
+
     $api->setAccessToken($accessToken);
 
     $request->api = $api;

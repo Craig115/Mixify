@@ -39,10 +39,11 @@
                     <template id ="playlists-template">
                       <div>
                         <ul class="list-group" v-for="playlist in list" >
-                            <li class="playlist-name"><input type="checkbox" name="playlist" value="@{{ playlist.id }}">@{{ playlist.name }}</li>
+                            <li class="playlist-name"><input value="@{{ playlist.id }}"type="checkbox" name="playlist" v-model="checkplaylist.playlists">@{{ playlist.name }}</li>
                         </ul>
                       </div>
-                      <button v-if="!hide" class="playlist" type="submit"><b>Add</b> to Playlist</button>
+                      <button v-if="!hide" v-on:click="addTracks" class="playlist" type="submit"><b>Add</b> to Playlist</button>
+                      <input type="hidden" id="token" v-model="csrf" value="{{ csrf_token() }}">
                     </template>
                   </div>
                 </div>
@@ -86,7 +87,7 @@
 
                         <ul class="track-group" v-for="track in mix" v-show="hidemix">
                             <div class="track-image">
-                              <input type="checkbox" name="mix-track" value="@{{ track.id }}"><img class="mix-covers" src="@{{ track.album.images[0].url }}"/>
+                              <input type="checkbox" v-on:click="selectTrack" name="mix-track" v-model="checktrack" value="@{{ track.id }}"><img class="mix-covers" src="@{{ track.album.images[0].url }}"/>
                             </div>
                             <div class="track-text">
                               <li class="mix-name">@{{ track.name }}</li>
@@ -94,7 +95,6 @@
                               <li class="mix-name">@{{ track.album.name }}</li>
                            </div>
                         </ul>
-
                         <button v-if="hide" class="mix" v-on:click="mixTracks" type="submit"><b>Get</b> Mix</button>
                         <button v-else class="mix" v-on:click="refreshMix" type="submit"><b>Refresh</b> Mix</button>
                       </div>
