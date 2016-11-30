@@ -1,6 +1,19 @@
-//var Mix = Vue.extend({
 
-//});
+Vue.component('releases', {
+  template: '#release-template',
+
+  props: ['list'],
+
+  ready: function() {
+    this.$http.get('/api', function (data) {
+      this.list = data.albums.items;
+    }).error(function (data, status, request) {
+        console.log(request);
+    });
+  },
+
+});
+
 
 Vue.component('artist', {
   template: '#artists-template',
@@ -47,6 +60,7 @@ Vue.component('track', {
       vm.$data.hide = false;
       this.hide = false;
       this.loading = true;
+      console.log(vm.$children);
       //Make Request to get Mix then hide the loading bar
       this.$http.get('/recommended', function (data) {
           vm.$data.mix = data;
@@ -72,7 +86,7 @@ Vue.component('track', {
     },
 
     selectTrack: function(){
-      vm.$children[1].$data.checkplaylist.tracks = this.checktrack;
+      vm.$children[2].$data.checkplaylist.tracks = this.checktrack;
     }
   }
 });
@@ -91,7 +105,7 @@ Vue.component('playlist', {
       checkplaylist: {
         playlists: [],
         tracks: [],
-        status: ''
+        message: ''
       },
       csrf: ''
     }
@@ -106,10 +120,11 @@ Vue.component('playlist', {
       this.$http.headers.common['X-CSRF-TOKEN'] = this.csrf;
       var data = JSON.stringify(this.checkplaylist);
       this.$http.post('/addTracks/' + data).then((response) => {
-        this.status = 'Successfully Added.';
+        this.message = 'Successfully Added.';
+        console.log(this.message);
       }, (response) => {
         console.log(response.data);
-        this.status = 'There was an error';
+        this.message = 'There was an error';
       });
     }
   }
@@ -146,7 +161,17 @@ vm = new Vue({
   data: function () {
     return {
       mix: [],
-      hide: true
+      hide: true,
+      mobile: false
     }
   },
+
+  methods: {
+    showMenu: function(){
+      this.mobile = true;
+    },
+    hideMenu: function(){
+      this.mobile = false;
+    }
+  }
 });

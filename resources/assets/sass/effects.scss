@@ -1,7 +1,15 @@
 .fade-transition {
-  transition: all .5s ease;
+  transition: all .7s ease;
 }
 
 .fade-enter, .fade-leave {
   opacity: 0;
+}
+
+.mix-fade-transition {
+  transition: all .10s ease;
+}
+
+.mobile-section{
+  -vendor-animation-delay: 1s;
 }

@@ -21,12 +21,13 @@ Route::get('/', function()
   }
 });
 
-Route::get('/test', function(){
-  return File::get(public_path() . '/static/index.html');
+Route::get('/api', function(){
+  return File::get(public_path() . '/js/splash.json');
 });
 
 Route::get('/profile', 'UserController@getProfile');
 
+Route::get('/releases', 'AlbumController@getNewReleases');
 
 Route::post('/auth', 'SpotifyApiController@spotifyLogin');
 Route::get('/auth', 'SpotifyApiController@spotifyLogin');

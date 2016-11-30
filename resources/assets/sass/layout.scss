@@ -8,6 +8,11 @@ body{
   align-self: center;
 }
 
+.mobile-menu{
+  display:none;
+  float:left;
+}
+
 .artist-image{
   border-radius:50%;
   height:150px;
@@ -115,9 +120,59 @@ body{
   border-radius:5px;
 }
 
+button.mix{
+  background-color:#D32E2E;
+  border:none;
+  padding:15px;
+  color:#fff;
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 300;
+  font-size: 1.25em;
+  border-radius:5px;
+  position: absolute;
+  left:50%;
+  box-shadow: 1px 1px 1px #000;
+}
+
+button.playlist {
+  background-color:#D32E2E;
+  border:none;
+  border-radius:5px;
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 300;
+  font-size: 0.75em;
+  padding:10px;
+  color:#fff;
+  box-shadow: 1px 1px 1px #000;
+}
+
 li{
   list-style: none;
 }
  ul.list-group{
   padding:0px;
+ }
+
+ .fa-spinner{
+   color:#fff;
+   animation: spin 2s linear infinite;
+ }
+
+ .fa-bars{
+   color:#fff;
+   vertical-align: middle;
+ }
+
+ .activateMenu{
+   display: block!important;
+ }
+
+ .mobile-section{
+   -webkit-animation: slideIn 2s forwards;
+  -moz-animation: slideIn 2s forwards;
+  animation: slideIn 2s forwards;
+ }
+
+ .playlist-name.input{
+   background-color: red;
  }
