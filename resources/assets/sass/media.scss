@@ -17,6 +17,17 @@
   }
 }
 
+@media (max-width: 1750px){
+  .artist-image{
+    height:130px;
+    width:130px;
+  }
+  .album-covers{
+    height:130px;
+    width:130px;
+  }
+}
+
 @media (max-width: 1650px){
   .left-section{
     display:none;
@@ -39,12 +50,41 @@
     display: flex;
     align-items: center;
   }
+  .data-name{
+    font-size: 0.9em;
+  }
+  button.mix{
+    margin-left:0px;
+  }
+}
+
+@media (max-width: 1590px){
+  .data-name{
+    font-size: 0.8em;
+  }
+
+}
+
+@media (max-width: 1080px){
+  .artist-image{
+    height:110px;
+    width:110px;
+  }
+  .album-covers{
+    height:80px;
+    width:80px;
+  }
+
 }
 
 @media (max-width: 935px){
   .new-release{
     width:150px;
     height:150px;
+  }
+  .artist-image{
+    height:80px;
+    width:80px;
   }
 }
 
@@ -57,7 +97,29 @@
     align-self: center;
     margin-top:80px;
   }
-
+  .center-content{
+    width:100%;
+  }
+  .artist-profiles{
+    justify-content: center;
+  }
+  button.mix{
+    left:45%;
+    margin-top: 20px;
+  }
+  .mix.refresh{
+    margin-top: 0px;
+    left:40%;
+  }
+  .playlists{
+    padding-left: 20px;
+  }
+  #mix-group{
+    margin:10px 0 0 2%;
+      flex-grow: 1;
+      height:100px;
+      width: calc(100% * (1/3) - 10px - 1px);
+  }
 }
 
 @media (max-width: 655px){
@@ -98,6 +160,22 @@
     right:5%;
     margin-top:20px;
   }
+  .center-content{
+    width:100%;
+  }
+  .artist-profiles{
+    justify-content: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+  }
+  ul.artist-group{
+    justify-content: center;
+    padding: 0px;
+  }
+  .artist-image{
+    left:40%;
+    position:relative;
+  }
   .new-release{
     width:75px;
     height:75px;
@@ -115,5 +193,33 @@
   }
   .mobile-menu{
     margin-right: 20px;
+  }
+  #mix-group{
+    width:auto;
+    margin-top: 10px;
+  }
+  .header-left{
+    width:100%;
+    justify-content: center;
+  }
+  .track-details{
+    flex-wrap: nowrap;
+    flex-direction: column;
+  }
+  .track-group{
+    justify-content: center;
+  }
+  button.mix{
+    left: 40%;
+  }
+  button.refresh{
+    left:35%;
+    margin-top: 5px;
+  }
+  .tracks h3{
+    text-align: center;
+  }
+  .footer{
+    padding-top:20px;
   }
 }

@@ -1,6 +1,11 @@
 body{
   background-color:#424242;
-  margin:0px;
+  margin: 0 0 100px;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
 }
 
 .image-circle{
@@ -103,12 +108,6 @@ body{
   font-family: 'Fira Sans', sans-serif;
 }
 
-
-.mix{
-  align-self: center;
-  margin-left:85px;
-}
-
 .track-details button{
   background-color:#D32E2E;
   border:none;
@@ -128,9 +127,9 @@ button.mix{
   font-family: 'Fira Sans', sans-serif;
   font-weight: 300;
   font-size: 1.25em;
-  border-radius:5px;
   position: absolute;
-  left:50%;
+  left: 55%;
+  border-radius:5px;
   box-shadow: 1px 1px 1px #000;
 }
 
@@ -165,14 +164,8 @@ li{
 
  .activateMenu{
    display: block!important;
- }
-
- .mobile-section{
-   -webkit-animation: slideIn 2s forwards;
-  -moz-animation: slideIn 2s forwards;
-  animation: slideIn 2s forwards;
- }
-
- .playlist-name.input{
-   background-color: red;
+   width:100%;
+   -webkit-animation: slideIn 0.5s forwards;
+  -moz-animation: slideIn 0.5s forwards;
+  animation: slideIn 0.5s forwards;
  }

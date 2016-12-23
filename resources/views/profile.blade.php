@@ -38,7 +38,7 @@
             <div class="content">
               <div class="center-content">
 
-                <div class="left-section" v-bind:class="{ activateMenu: mobile }">
+                <div class="left-section" v-bind:class="{ activateMenu: mobile, 'slideInLeft': mobile, 'slideOutLeft': !mobile }">
                   <div class="playlists">
                     <h1><b>Your Playlists</b></h1>
 
@@ -46,19 +46,24 @@
 
                     <template id ="playlists-template">
                       <div>
-                        <h2>@{{ message }}</h2>
+                        <h2 class="message" v-show="message.length">
+                          @{{ message }}
+                        </h2>
                         <ul class="list-group" v-for="playlist in list" >
-                            <li class="playlist-name"><input value="@{{ playlist.id }}"type="checkbox" name="playlist" v-model="checkplaylist.playlists">@{{ playlist.name }}</li>
+                            <li class="playlist-name">
+                              <input value="@{{ playlist.id }}" id="playlist-name" type="checkbox" name="playlist" v-model="checkplaylist.playlists">@{{ playlist.name }}
+                              <label for="playlist-name"></label>
+                            </li>
                         </ul>
                       </div>
-                      <button v-if="!hide" v-on:click="addTracks" class="playlist" type="submit"><b>Add</b> to Playlist</button>
+                      <button v-if="!hide" v-on:click="validateInput" class="playlist" type="submit"><b>Add</b> to Playlist</button>
                       <input type="hidden" id="token" v-model="csrf" value="{{ csrf_token() }}">
                     </template>
                   </div>
                 </div>
 
 
-                <div class="right-section">
+                <div class="right-section" v-show="!mobile">
                   <div class="artists" v-show="hide">
                     <h3>Your Top Artists</h1>
 
@@ -96,7 +101,9 @@
                         </ul>
                         <ul transition="fade" id="mix-group" class="track-group" v-for="track in mix" v-show="hidemix">
                             <div class="track-image">
-                              <input type="checkbox" v-on:click="selectTrack" name="mix-track" v-model="checktrack" value="@{{ track.id }}"><img transition="mix-fade" class="mix-covers" src="@{{ track.album.images[0].url }}"/>
+                              <input type="checkbox" v-on:click="selectTrack" name="mix-track" v-model="checktrack" value="@{{ track.id }}">
+                              <img transition="mix-fade" class="mix-covers" src="@{{ track.album.images[0].url }}"/>
+                              <label for="track-image"></label>
                             </div>
                             <div class="track-text">
                               <li class="mix-name">@{{ track.name }}</li>
@@ -106,15 +113,15 @@
                         </ul>
                       </div>
                       <button v-if="hide" class="mix" v-on:click="mixTracks" type="submit"><b>Get</b> Mix</button>
-                      <button v-else class="mix" v-on:click="refreshMix" type="submit"><b>Refresh</b> Mix</button>
+                      <button v-else class="mix refresh" v-on:click="mixTracks" type="submit"><b>Refresh</b> Mix</button>
                     </template>
 
                  </div>
               </div>
             </div>
           </div>
-          <div class="footer">&copy; 2016 Mixify</div>
         </div>
+        <div class="footer">&copy; 2016 Mixify</div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.8/vue.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.13/vue-resource.min.js"></script>
         <script src="/js/main.js"></script>

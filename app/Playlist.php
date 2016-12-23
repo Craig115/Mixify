@@ -21,7 +21,7 @@ class Playlist extends Model
       foreach($playlists as $playlistid){
         $api->addUserPlaylistTracks($username, $playlistid, $tracks);
       }
-
+      
       return "Added successfully.";
     }
 }

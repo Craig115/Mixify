@@ -58,22 +58,9 @@ Vue.component('track', {
     mixTracks: function(){
       //Hide Elements and display Loading Bar
       vm.$data.hide = false;
+      this.hidemix = false;
       this.hide = false;
       this.loading = true;
-      console.log(vm.$children);
-      //Make Request to get Mix then hide the loading bar
-      this.$http.get('/recommended', function (data) {
-          vm.$data.mix = data;
-          this.loading = false;
-          this.mix = vm.$data.mix;
-      }).error(function (data, status, request) {
-          console.log(request);
-      })
-    },
-
-    refreshMix: function(){
-      this.loading = true;
-      this.hidemix = false;
       //Make Request to get Mix then hide the loading bar
       this.$http.get('/recommended', function (data) {
           vm.$data.mix = data;
@@ -86,8 +73,14 @@ Vue.component('track', {
     },
 
     selectTrack: function(){
-      vm.$children[2].$data.checkplaylist.tracks = this.checktrack;
+      var position = vm.$children.indexOf("Playlist");
+      if(position == -1){
+        vm.$children[0].$data.checkplaylist.tracks = this.checktrack;
+      } else {
+        vm.$children[position].$data.checkplaylist.tracks = this.checktrack;
+      }
     }
+    
   }
 });
 
@@ -105,9 +98,9 @@ Vue.component('playlist', {
       checkplaylist: {
         playlists: [],
         tracks: [],
-        message: ''
       },
-      csrf: ''
+      csrf: '',
+      message: ''
     }
   },
 
@@ -116,14 +109,20 @@ Vue.component('playlist', {
       this.list = JSON.parse(this.list);
     },
 
+    validateInput: function() {
+      if(this.checkplaylist.playlists.length && this.checkplaylist.tracks.length){
+        this.addTracks();
+      } else {
+        this.message = 'You must select at least one Track AND one Playlist.';
+      }
+    },
+
     addTracks: function () {
       this.$http.headers.common['X-CSRF-TOKEN'] = this.csrf;
       var data = JSON.stringify(this.checkplaylist);
       this.$http.post('/addTracks/' + data).then((response) => {
         this.message = 'Successfully Added.';
-        console.log(this.message);
       }, (response) => {
-        console.log(response.data);
         this.message = 'There was an error';
       });
     }
