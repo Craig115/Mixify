@@ -9,9 +9,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Playlist extends Model
 {
-    public function getMyPlaylists(SpotifyWebAPI $api)
+    public function getMyPlaylists(SpotifyWebAPI $api, $limit)
     {
-      $playlists = $api->getMyPlaylists();
+      $playlists = $api->getMyPlaylists([
+        'limit' => $limit,
+      ]);
 
       return $playlists;
     }
@@ -21,7 +23,16 @@ class Playlist extends Model
       foreach($playlists as $playlistid){
         $api->addUserPlaylistTracks($username, $playlistid, $tracks);
       }
-      
+
       return "Added successfully.";
+    }
+
+    public function createPlaylist(SpotifyWebAPI $api, $username, $playlistname)
+    {
+      $api->createUserPlaylist($username, [
+        'name' => $playlistname,
+      ]);
+
+      return "Created successfully";
     }
 }

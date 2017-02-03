@@ -21,6 +21,11 @@ Route::get('/', function()
   }
 });
 
+Route::get('500', function()
+{
+    abort(500);
+});
+
 Route::get('/api', function(){
   return File::get(public_path() . '/js/splash.json');
 });
@@ -33,6 +38,13 @@ Route::post('/auth', 'SpotifyApiController@spotifyLogin');
 Route::get('/auth', 'SpotifyApiController@spotifyLogin');
 Route::get('/recommended', 'UserController@getRecommended');
 
-
 Route::post('/addTracks/{data}', 'PlaylistController@addTracks');
 Route::get('/addTracks/{data}', 'PlaylistController@addTracks');
+
+Route::get('/createPlaylist', 'PlaylistController@createMixifyPlaylist');
+
+Route::get('/mixify', 'UserController@mixify');
+Route::post('/mixify', 'UserController@mixify');
+
+Route::post('/error/{error}', 'UserController@handleError');
+Route::get('/error/{error}', 'UserController@handleError');

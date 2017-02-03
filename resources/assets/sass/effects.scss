@@ -10,6 +10,13 @@
   transition: all .10s ease;
 }
 
-.mobile-section{
-  -vendor-animation-delay: 1s;
-}
+.b-lazy {
+        -webkit-transition: opacity 300ms ease-in-out;
+           -moz-transition: opacity 300ms ease-in-out;
+                transition: opacity 300ms ease-in-out;
+                 max-width: 100%;
+                   opacity: 0;
+    }
+    .b-lazy.b-loaded {
+                   opacity: 1;
+    }

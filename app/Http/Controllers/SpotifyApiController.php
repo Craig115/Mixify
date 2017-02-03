@@ -26,6 +26,7 @@ class SpotifyApiController extends Controller
       $scopes = array(
         'playlist-read-private',
         'playlist-modify-private',
+        'playlist-modify-public',
         'user-read-private',
         'user-top-read'
       );
@@ -35,7 +36,7 @@ class SpotifyApiController extends Controller
       ));
 
       AppSession::put('session', $session);
-    
+
       header('Location: ' . $authorizeUrl);
 
     }

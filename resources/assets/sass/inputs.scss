@@ -1,0 +1,24 @@
+/* Hidding the radiobuttons & checkboxes */
+input[type="checkbox"] {
+    display: none!important;
+}
+/* Hidding the "check" status of inputs */
+input[type="checkbox"] + label .fa-circle  {
+display: none;
+}
+/* Styling the "check" status */
+input[type="checkbox"]:checked + label .fa-circle {
+display: block;
+}
+/* Styling checkboxes */
+input[type="checkbox"]:checked + label .fa-circle {
+position: relative;
+}
+
+.fa-circle-o{
+  color:#fff;
+}
+
+.fa-circle{
+  color:#fff;
+}

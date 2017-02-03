@@ -4,6 +4,9 @@
   background-color:#D32E2E;
   display: flex;
   justify-content: center;
+  border-bottom-width: 0.2em;
+  border-bottom-style: solid;
+  border-bottom-color: #A82424;
 }
 
 .head-container{
@@ -32,4 +35,9 @@
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
+}
+
+a:-webkit-any-link{
+  color:#FFF;
+  text-decoration: none;
 }

@@ -10,7 +10,6 @@ class ApiAccessRepository implements ApiAccessRepositoryInterface
 {
   public function Check(Request $request, Session $session)
   {
-
     if($session->accessToken) {
       $this->Refresh($request, $session);
     } else {
@@ -20,7 +19,7 @@ class ApiAccessRepository implements ApiAccessRepositoryInterface
 
   public function Access(Request $request, Session $session)
   {
-    $code = substr($_SERVER['REQUEST_URI'], 14,306);
+    $code = substr($_SERVER['REQUEST_URI'], 14,338);
 
     $session->requestAccessToken($code);
 
