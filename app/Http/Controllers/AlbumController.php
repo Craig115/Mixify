@@ -19,7 +19,12 @@ class AlbumController extends Controller
 
     $session = AppSession::get('session');
 
-    $repository->Check($request, $session);
+    if ($session) {
+      $repository->Check($request, $session);
+    } else {
+      Redirect::to('/splash')->send();
+    }
+
   }
 
   public function getNewReleases(Album $album, Request $request)

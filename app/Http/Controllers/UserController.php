@@ -12,6 +12,7 @@ use SpotifyWebAPI\Session;
 use Session as AppSession;
 use SpotifyWebAPI\SpotifyWebAPI;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use App\Repositories\ApiAccessRepositoryInterface;
 
 
@@ -26,11 +27,12 @@ class UserController extends Controller
 
       $session = AppSession::get('session');
 
-      if(is_null($session)) {
-        return view('splash');
-      } else {
+      if ($session) {
         $repository->Check($request, $session);
+      } else {
+        Redirect::to('/splash')->send();
       }
+      
     }
 
     public function getProfile(Request $request, Playlist $playlist, Track $track, Profile $profile, Artist $artist)
@@ -64,7 +66,6 @@ class UserController extends Controller
       $recommendedTracks = $track->getRecommendedTracks($request->api, $toptracks);
 
       return $recommendedTracks;
-
     }
 
     public function mixify(Request $request, Track $track)
@@ -79,7 +80,7 @@ class UserController extends Controller
         'popularity' => rand(0, 100),
         'speechiness' => rand(0, 10) / 10
       );
-      dd($toptracks);
+
       $recommendedTracks = $track->Mixify($request->api, $toptracks, $tuneables);
 
       $mixifytracks = array();
@@ -91,7 +92,6 @@ class UserController extends Controller
       AppSession::put('mixifyTracks', $mixifytracks);
 
       return;
-
     }
 
     public function handleError($error)
