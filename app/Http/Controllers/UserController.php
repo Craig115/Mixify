@@ -79,7 +79,7 @@ class UserController extends Controller
         'popularity' => rand(0, 100),
         'speechiness' => rand(0, 10) / 10
       );
-
+      dd($toptracks);
       $recommendedTracks = $track->Mixify($request->api, $toptracks, $tuneables);
 
       $mixifytracks = array();
