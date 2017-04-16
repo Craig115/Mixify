@@ -48,6 +48,7 @@ Vue.component('artist', {
               width: 420,
               src: 'data-src-small'
           }],
+
           success: function(element){
             setTimeout(function(){
                 var parent = element.parentNode;
@@ -132,7 +133,7 @@ Vue.component('track', {
 
               }
           });
-
+          console.log(bLazy);
       }).error(function (data, status, request) {
         console.log(request);
       })

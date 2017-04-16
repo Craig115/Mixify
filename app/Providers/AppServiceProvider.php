@@ -27,12 +27,11 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind('SpotifyWebAPI\Session', function () {
-            return new Session('f14895140c8944678bb07d346e423cfb', '1e9fd3799064451aa5ce3ea33696a5da', 'http://138.68.141.154/profile');
+            return new Session('f14895140c8944678bb07d346e423cfb', '1e9fd3799064451aa5ce3ea33696a5da', 'http://www.mixify.io/profile/');
         });
 
         $this->app->bind('SpotifyWebAPI\SpotifyWebAPI', function () {
             return new SpotifyWebAPI();
         });
-
     }
 }

@@ -26,11 +26,16 @@ Route::get('500', function()
     abort(500);
 });
 
-Route::get('/api', function(){
+Route::get('/api', function()
+{
   return File::get(public_path() . '/js/splash.json');
 });
 
-Route::get('/profile', 'UserController@getProfile');
+Route::get('/splash', function(){
+  return view('splash');
+});
+
+Route::get('/profile/', 'UserController@getProfile');
 
 Route::get('/releases', 'AlbumController@getNewReleases');
 

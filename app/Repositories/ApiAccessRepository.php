@@ -19,7 +19,7 @@ class ApiAccessRepository implements ApiAccessRepositoryInterface
 
   public function Access(Request $request, Session $session)
   {
-    $code = substr($_SERVER['REQUEST_URI'], 14,338);
+    $code = substr($_SERVER['REQUEST_URI'], 15,339);
 
     $session->requestAccessToken($code);
 
