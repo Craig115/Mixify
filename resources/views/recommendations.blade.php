@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Laravel</title>
+        <title>Spotify</title>
 
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
-        <script src="http://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
 
         <style>
             html, body {
@@ -39,16 +38,15 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Test</div>
-                  <form method="POST" id="recommend" action="/recommendations">
-                      {{ csrf_field() }}
-                      <button type="submit">Try Me</button>
-                  </form>
+                <h1>Here's your Mix</h1>
+                @foreach($recommendations as $recommendation)
+                <ul>
+              <li>Track: {{ $recommendation->name }}</li>
+              <li>Artist: {{ $recommendation->artists[0]->name }}</li>
+              <li>Album: {{ $recommendation->album->name }}</li>
+                </ul>
+                @endforeach
 
-                  <form method="POST" id="second" action="/artists">
-                      {{ csrf_field() }}
-                      <button type="submit">And Again</button>
-                  </form>
             </div>
         </div>
     </body>

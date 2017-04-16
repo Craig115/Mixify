@@ -1,0 +1,54 @@
+.image-area{
+  width:90%;
+  margin-left:auto;
+  margin-right: auto;
+  position: relative;
+  z-index:0;
+}
+
+.release-group{
+  margin-right:0px;
+}
+
+.start{
+  background-color:#D32E2E;
+  border:none;
+  padding:15px;
+  color:#fff;
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 300;
+  font-size: 1.25em;
+  border-radius:5px;
+  box-shadow: 2px 2px 2px #000;
+}
+
+
+.new-releases{
+  display:flex;
+  width:100%;
+  z-index: 0;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.new-release{
+  width:280px;
+  height:280px;
+}
+
+.jumbotron{
+  width:100%;
+  z-index:1;
+  top:30%;
+  position: absolute;
+}
+
+form#auth{
+  text-align: center;
+}
+
+
+.title{
+  text-align: center;
+}

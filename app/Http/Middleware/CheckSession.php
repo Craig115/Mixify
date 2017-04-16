@@ -2,10 +2,11 @@
 
 namespace App\Http\Middleware;
 
-use Session;
 use Closure;
+use Session as AppSession;
+use App\Repositories\ApiAccessRepositoryInterface;
 
-class CheckSpotifyAuth
+class CheckSession
 {
     /**
      * Handle an incoming request.
@@ -16,11 +17,13 @@ class CheckSpotifyAuth
      */
     public function handle($request, Closure $next)
     {
-      $authorized = Session::get('authorized');
-      if($authorized){
-        return $next($request);
-      } else {
-        return view('splash');
-      }
+        $session = AppSession::get('session');
+
+        if ($session) {
+          $next($request);
+        } else {
+          Redirect::to('/splash')->send();
+        }
+
     }
 }

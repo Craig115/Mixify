@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans:300,400');
+
+h1{
+  color:#fff;
+  font-family: 'Fira Sans', sans-serif;
+}
+
+h2.message{
+  color:#fff;
+  font-family: 'Fira Sans', sans-serif;
+  font-size:1em;
+}
+
+h3 {
+  color:#fff;
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 400;
+  text-align: center;
+}
+
+h4 {
+  align-self: center;
+  margin-right:10px;
+  color:#fff;
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 400;
+}
+
+.fa-times{
+  float:right;
+  color:#A82424;
+}
+
+.fa-info-circle{
+  padding-right:10px;
+  color:#fff;
+}
+
+h5{
+  margin:0px;
+  color:#fff;
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 300;
+  font-size: 3em;
+  align-self: center;
+}
+
+h5 b {
+  text-shadow: 1px 1px #000;
+}
+
+.track-details h1{
+  text-align: center;
+}
+
+
+.playlist-name{
+  color:#fff;
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 300;
+}
+
+.data-name{
+  color:#fff;
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 300;
+}
+
+.title{
+  color:#fff;
+  font-size: 7em;
+  font-family: 'Fira Sans', sans-serif;
+  text-shadow: 3px 3px #000;
+}

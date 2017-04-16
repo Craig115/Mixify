@@ -21,12 +21,17 @@ class SpotifyApiController extends Controller
       $this->session = $session;
     }
 
+<<<<<<< HEAD
     public function Authorize(Session $session)
+=======
+    public function spotifyLogin(Session $session)
+>>>>>>> vue
     {
       $scopes = array(
         'playlist-read-private',
+        'playlist-modify-private',
+        'playlist-modify-public',
         'user-read-private',
-        'user-library-read',
         'user-top-read'
       );
 
@@ -34,7 +39,7 @@ class SpotifyApiController extends Controller
         'scope' => $scopes
       ));
 
-      AppSession::put('authorized', 'yes');
+      AppSession::put('session', $session);
 
       header('Location: ' . $authorizeUrl);
 

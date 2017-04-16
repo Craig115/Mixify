@@ -1,0 +1,22 @@
+.fade-transition {
+  transition: all .7s ease;
+}
+
+.fade-enter, .fade-leave {
+  opacity: 0;
+}
+
+.mix-fade-transition {
+  transition: all .10s ease;
+}
+
+.b-lazy {
+        -webkit-transition: opacity 300ms ease-in-out;
+           -moz-transition: opacity 300ms ease-in-out;
+                transition: opacity 300ms ease-in-out;
+                 max-width: 100%;
+                   opacity: 0;
+    }
+    .b-lazy.b-loaded {
+                   opacity: 1;
+    }

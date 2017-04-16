@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Laravel</title>
+        <title>Be right back.</title>
 
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
-        <script src="http://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
 
         <style>
             html, body {
@@ -15,6 +14,7 @@
                 margin: 0;
                 padding: 0;
                 width: 100%;
+                color: #B0BEC5;
                 display: table;
                 font-weight: 100;
                 font-family: 'Lato';
@@ -32,23 +32,15 @@
             }
 
             .title {
-                font-size: 96px;
+                font-size: 72px;
+                margin-bottom: 40px;
             }
         </style>
     </head>
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Test</div>
-                  <form method="POST" id="recommend" action="/recommendations">
-                      {{ csrf_field() }}
-                      <button type="submit">Try Me</button>
-                  </form>
-
-                  <form method="POST" id="second" action="/artists">
-                      {{ csrf_field() }}
-                      <button type="submit">And Again</button>
-                  </form>
+                <div class="title">Whoops!</div>
             </div>
         </div>
     </body>

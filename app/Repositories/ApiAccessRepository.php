@@ -8,27 +8,40 @@ use Illuminate\Http\Request;
 
 class ApiAccessRepository implements ApiAccessRepositoryInterface
 {
+  public function Check(Request $request, Session $session)
+  {
+    if($session->accessToken) {
+      $this->Refresh($request, $session);
+    } else {
+      $this->Access($request, $session);
+    }
+  }
+
   public function Access(Request $request, Session $session)
   {
-    $checkToken = AppSession::get('accessToken');
-
-    if($checkToken)
-    {
-      $api = new SpotifyWebAPI();
-      $api->setAccessToken($checkToken);
-      $request->api = $api;
-      return $request;
-    }
-
-    $code = substr($_SERVER['REQUEST_URI'], 14,300);
+    $code = substr($_SERVER['REQUEST_URI'], 15,339);
 
     $session->requestAccessToken($code);
+
+    $this->Set($request, $session);
+  }
+
+  public function Refresh(Request $request, Session $session)
+  {
+    $refreshToken = $session->getRefreshToken();
+
+    $session->refreshAccessToken($refreshToken);
+
+    $this->Set($request, $session);
+  }
+
+  public function Set(Request $request, Session $session)
+  {
     $accessToken = $session->getAccessToken();
 
     $api = new SpotifyWebAPI();
-    $api->setAccessToken($accessToken);
 
-    AppSession::put('accessToken', $accessToken);
+    $api->setAccessToken($accessToken);
 
     $request->api = $api;
 
